@@ -13,7 +13,7 @@ if _env_file.exists():
 
 
 def _parse_cors_origins() -> list[str]:
-    raw = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173")
+    raw = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173,https://green-ospf-simulator.vercel.app")
     origins: set[str] = set()
     for item in raw.split(","):
         cleaned = item.strip().rstrip("/")
@@ -22,6 +22,7 @@ def _parse_cors_origins() -> list[str]:
     # Always allow local development origins alongside any production URLs
     origins.add("http://localhost:5173")
     origins.add("http://127.0.0.1:5173")
+    origins.add("https://green-ospf-simulator.vercel.app")
     return sorted(list(origins))
 
 
